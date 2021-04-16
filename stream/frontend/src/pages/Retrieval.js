@@ -4,10 +4,12 @@ import {useState} from "react";
 import request from "umi-request";
 import {fallbackImage, importURL, retrievalURL} from "@/pages/util";
 
+
 const {Option} = Select;
 
 
 export default function Retrieval(props) {
+  //console.log('props', props)
   // const [setResults] = props;
   const [form] = Form.useForm();
   const [initValues] = useState({
@@ -53,7 +55,7 @@ export default function Retrieval(props) {
   const [previewImage, setPreviewImage] = useState(fallbackImage);
   return (
     <>
-      <h3><b>RETRIEVAL</b></h3>
+      <h1 ><b>RETRIEVAL</b></h1>
       <Row>
         <Col>
           <Form form={form}
@@ -62,7 +64,7 @@ export default function Retrieval(props) {
                 layout="vertical">
             <Form.Item
               name="image"
-              label="Image:"
+              label="Upload your image:"
             >
               <Upload
                 listType="picture-card"

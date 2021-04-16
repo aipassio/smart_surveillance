@@ -3,10 +3,12 @@ import {Avatar, Col, Divider, Image, List, Row} from "antd";
 import {useState} from "react";
 import ImportId from "@/pages/ImportId";
 import Retrieval from "@/pages/Retrieval";
+import ReidVideoPlayer from "@/pages/ReidVideoPlayer";
 import {fallbackImage} from "@/pages/util";
+import {Menu} from 'antd';
 
-
-export default function () {
+export default function (props) {
+  console.log('props.abc', props.abc)
   const [
     currentImage,
     setCurrentImage
@@ -15,27 +17,72 @@ export default function () {
   const [results, setResults] = useState([])
 
   const [previewImage, setPreviewImage] = useState(fallbackImage);
+
+  const [showRetrieval, setshowRetrieval] = useState(false)
+  const [showImport, setshowImport] = useState(true)
+  const [showVideo, setshowVideo] = useState(false)
+
+  const handleMenuButton = (key) => {
+    //console.log('key',key);
+    setshowImport(key==='1')
+    setshowRetrieval(key==='2')
+    setshowVideo(key==='3')
+    //console.log('showRetrieval',showRetrieval);
+
+  }
   return (
+    
+
+
+   
     <>
-      <div className={styles.siteLayoutContent}>
-        <Row>
-          <Col span={16}>
+    
+  <Menu theme="dark" mode="horizontal" men defaultSelectedKeys={['1']}
+      style={{lineHeight: "92px"}}
+        onClick = {(e) =>
+          handleMenuButton(e.key)
+        }
+
+        >
+          <Menu.Item key="1">Import Image</Menu.Item>
+          <Menu.Item key="2">Retrieval Image</Menu.Item>
+          <Menu.Item key="3">Streaming video</Menu.Item>
+          
+        </Menu> 
+        
+           <div className={styles.siteLayoutContent}>
+         
+           {showVideo && <ReidVideoPlayer width="80%"/>}
+
+        <Row id='body' >
+        <Col id='col 1' span={8} style={{paddingLeft: 15}}>
+          {showRetrieval && <Retrieval setResults={(results) => {
+              if (results.length <= 0) {
+                return
+              }
+              setCurrentImage("data:image/jpeg;base64," + results[0].image)
+              setResults(results)
+            }}/>}
+            {/*<Divider/>*/}
+            {showImport &&<ImportId/>}
+          </Col>
+          {showRetrieval && <Col id='body retrieval result' span={16}>
             <Row>
               <Image
-                width="650px"
-                height="650px"
+                width="80%"
+                height="80%"
                 src={currentImage}
                 fallback={fallbackImage}
               />
             </Row>
             <Divider/>
-            <Row>
+            <Row id="List of retrieval result">
               <Col>
-                <div style={{overflowX: "auto", width: 650, height: 154}}>
+                <div style={{overflowX: "auto", width: "80%"}}>
                   {results.map((result, index) =>
                     <table style={{float: "left", width: 120}}>
                       <tr>
-                        <td><b>ID:</b> {result.id} </td>
+                        <td><b>Image ID:</b> {result.id} </td>
                         <td>&nbsp;</td>
                       </tr>
                       <tr>
@@ -63,20 +110,13 @@ export default function () {
                 </div>
               </Col>
             </Row>
-          </Col>
-          <Col span={8} style={{paddingLeft: 15}}>
-            <Retrieval setResults={(results) => {
-              if (results.length <= 0) {
-                return
-              }
-              setCurrentImage("data:image/jpeg;base64," + results[0].image)
-              setResults(results)
-            }}/>
-            <Divider/>
-            <ImportId/>
-          </Col>
+          </Col> //end of body retrieval result
+          
+          }
+          
         </Row>
       </div>
+     
     </>
   );
 }

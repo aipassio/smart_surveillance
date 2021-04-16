@@ -43,7 +43,7 @@ export default function ImportId() {
   const [previewImage, setPreviewImage] = useState(fallbackImage);
   return (
     <>
-      <h3><b>IMPORT IMAGE</b></h3>
+      <h1><b>IMPORT IMAGE</b></h1>
       <Row>
         <Col>
           <Form form={form}
