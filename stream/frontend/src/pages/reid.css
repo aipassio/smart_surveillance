@@ -1,0 +1,29 @@
+
+.normal {
+  background: #79F27B;
+}
+
+.siteLayoutContent {
+  min-height: 280px;
+  width: 1024px;
+  margin: auto;
+  padding: 24px;
+  background: #fff;
+}
+
+[data-theme="dark"] .siteLayoutContent {
+  background: #141414;
+}
+
+.avatarUploader > .ant-upload {
+  width: 128px;
+  height: 128px;
+}
+
+.demo-infinite-container {
+  height: 300px;
+  padding: 8px 24px;
+  overflow: auto;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+}
