@@ -5,7 +5,7 @@ services:
     image: alqutami/rtmp-hls:latest-alpine
     ports:
       - 80:80
-      - 8080:8080
+      - 8090:8090
       - 1935:1935
     restart: unless-stopped
     volumes:

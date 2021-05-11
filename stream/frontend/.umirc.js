@@ -8,7 +8,7 @@ export default {
       routes: [
         {
           path: '/',
-          component: './reid',
+          component: './ReId',
         },
       ],
     },

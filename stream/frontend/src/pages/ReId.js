@@ -69,8 +69,9 @@ export default function (props) {
           {showRetrieval && <Col id='body retrieval result' span={16}>
             <Row>
               <Image
-                width="80%"
-                height="80%"
+               // width="80%"
+               style={{maxHeight:350,width:"auto",height:"auto"}}
+
                 src={currentImage}
                 fallback={fallbackImage}
               />

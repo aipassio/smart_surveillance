@@ -19,6 +19,7 @@ function BasicLayout(props) {
   return (
     <Layout>
       {<Header style={{ height: '90px'}}>
+      
         <div className="logo" style={{ display: 'flex', flexDirection: "row" 
           ,backgroundColor: '#1f1818'
           ,height: '90px',justifyContent: 'space-evenly'}} >

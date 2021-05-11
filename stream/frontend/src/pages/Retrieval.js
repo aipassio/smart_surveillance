@@ -24,7 +24,7 @@ export default function Retrieval(props) {
     const reader = new FileReader();
     reader.readAsDataURL(file.originFileObj);
     reader.onload = () => {
-      values.image = reader.result.substring("data:image/jpeg;base64,".length)
+      values.image = reader.result.substring(`data:${file.type};base64,`.length)
       request.post(retrievalURL, {
         method: 'post',
         processData: false,
@@ -75,7 +75,7 @@ export default function Retrieval(props) {
               >
                 <img src={previewImage}
                      alt="avatar"
-                     style={{width: '100%'}}/>
+                     style={{height: '100%'}}/>
               </Upload>
             </Form.Item>
 
@@ -95,6 +95,7 @@ export default function Retrieval(props) {
                 <Option value={7}>HSV_1_2</Option>
                 <Option value={8}>HSV_2_1</Option>
                 <Option value={9}>HSV_2_2</Option>
+                <Option value={10}>HSV_4_0</Option>
               </Select>
             </Form.Item>
 
